@@ -8,26 +8,24 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		//Do your magic here
-		$this->load->model('m_Login');
+		$this->load->model('M_login');
 	}
 
 	public function index()
 	{
-		$this->load->view('Login');
+		$this->load->view('login');
 		$this->session->sess_destroy();
 	}
 
 	function proses()
 	{
-
-
 		$where = array(
 			'username' => $this->input->post('username'),
 			'password' => md5($this->input->post('password')),
 		);
 
-		$cek = $this->m_Login->cek_Login('pengguna', $where)->num_rows(); //cheking proses when there an exist id
-		$query = $this->m_Login->cek_Login('pengguna', $where)->row();
+		$cek = $this->M_login->cek_Login('pengguna', $where)->num_rows(); //cheking proses when there an exist id
+		$query = $this->M_login->cek_Login('pengguna', $where)->row();
 		//getting some data from table Login
 
 		#proses cheking while data is already exist

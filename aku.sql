@@ -48,7 +48,7 @@ INSERT INTO `alternatif` (`id`, `nama`, `kemasan`, `asal`, `jenis`, `kategori`) 
 
 -- --------------------------------------------------------
 
---
+--  
 -- Table structure for table `hasil_alternatif`
 --
 

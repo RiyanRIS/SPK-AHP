@@ -11,7 +11,7 @@
 </head>
 <style type="text/css">
     body {
-        background-image: url("../Assets/images/ayam.jpg");
+        background-image: url("../assets/images/ayam.jpg");
         background-size: cover;
     }
 </style>
