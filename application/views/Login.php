@@ -11,7 +11,7 @@
 </head>
 <style type="text/css">
     body {
-        background-image: url("../assets/images/ayam.jpg");
+        background-image: url("../Assets/images/ayam.jpg");
         background-size: cover;
     }
 </style>
@@ -26,8 +26,8 @@
                 <div class="text-center"><b>
                         <h3>Peternak Ayam Broiler Desa Mutihan Klaten</h3>
                     </b></div>
-                <form action="<?php echo site_url('login/proses'); ?>" method="POST">
-                    <div class="panel panel-dark login-box">
+                <form action="<?php echo site_url('Login/proses'); ?>" method="POST">
+                    <div class="panel panel-dark Login-box">
                         <div class="panel-heading">
                             <h3 class="text-center">LOGIN PETERNAK</h3>
                         </div>

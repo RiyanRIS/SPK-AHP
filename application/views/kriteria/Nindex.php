@@ -100,7 +100,7 @@ if (($this->input->post('hapus-contengan')) > 0) {
       <table width="100%" class="table table-striped table-bordered" id="tabeldata">
         <thead>
           <tr>
-            <th width="10px"><input type="checkbox" name="select-all" id="select-all" /></th>
+            <th></th>
             <th>ID Kriteria</th>
             <th>Nama Kriteria</th>
             <th width="100px">Aksi</th>
@@ -109,8 +109,15 @@ if (($this->input->post('hapus-contengan')) > 0) {
         <tbody>
           <?php
           foreach ($kriteria as $key => $value) {
-            echo '<tr><td style="vertical-align:middle;"><input type="checkbox" value="' . $value->id . '" name="checkbox[]" /></td>
-                    <td style="vertical-align:middle;">' . ($key + 1) . '</td>
+            echo '<tr>';
+                  if ($value->status == 'A') {
+                    echo '<td style="vertical-align:middle;"><input type="checkbox" value="' .   $value->id . '" name="checkbox[]" id="status_update" class="kriteria_status" checked/></td>';
+                  }else {
+                    echo '<td style="vertical-align:middle;"><input type="checkbox" value="' .   $value->id . '" name="checkbox[]" id="status_update" class="kriteria_status"/></td>';
+                  };
+
+                    
+                   echo '<td style="vertical-align:middle;">' . ($key + 1) . '</td>
                     <td style="vertical-align:middle;">' . $value->nama . '</td>
                      <td style="text-align:center;vertical-align:middle;">
                    
@@ -143,6 +150,24 @@ if (($this->input->post('hapus-contengan')) > 0) {
         }
 
       });
+    });
+   
+    // $(".kriteria_status").prop('checked', true); 
+
+    $(".kriteria_status").on("change",function(e){
+        var status = $(this).is(":checked") ? 'A' : 'T'; //testing if is checked... 
+        var id = $(this).prop('value')
+        console.log(id);
+        console.log(status);
+        $.ajax({
+          type: 'POST',
+          url: '<?php echo site_url('kriteria/update_status'); ?>',
+          data: {'id':id, 'status':status},
+          success: function(data) {
+            alert('Success Select!') //tampil data di modal.
+          }
+        });
+       
     });
   });
 </script>

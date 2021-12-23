@@ -16,6 +16,17 @@ class Mod_kriteria extends CI_Model {
 	function get_kriteria(){
 		return $this->db->get($this->table)->result();
 	}
+
+	function update($id, $status)
+	{
+		$sql = "UPDATE kriteria SET status=? WHERE id=?";
+		$result = $this->db->query($sql, array($status, $id));
+
+		if($result){
+    		return TRUE;
+		}   
+
+	}
 	
 
 }

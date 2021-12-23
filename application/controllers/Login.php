@@ -8,12 +8,12 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		//Do your magic here
-		$this->load->model('m_login');
+		$this->load->model('m_Login');
 	}
 
 	public function index()
 	{
-		$this->load->view('login');
+		$this->load->view('Login');
 		$this->session->sess_destroy();
 	}
 
@@ -26,9 +26,9 @@ class Login extends CI_Controller
 			'password' => md5($this->input->post('password')),
 		);
 
-		$cek = $this->m_login->cek_login('pengguna', $where)->num_rows(); //cheking proses when there an exist id
-		$query = $this->m_login->cek_login('pengguna', $where)->row();
-		//getting some data from table login
+		$cek = $this->m_Login->cek_Login('pengguna', $where)->num_rows(); //cheking proses when there an exist id
+		$query = $this->m_Login->cek_Login('pengguna', $where)->row();
+		//getting some data from table Login
 
 		#proses cheking while data is already exist
 		if ($cek > 0) // is data avaible ?
@@ -36,7 +36,7 @@ class Login extends CI_Controller
 			if ($query->role == 'peternakayam') {
 				$data_session = array(
 					'nama' => $query->nama_lengkap,
-					'stat' => 'login',
+					'stat' => 'Login',
 					'ha' => $query->role,
 				);
 				$this->session->set_userdata($data_session);
@@ -44,7 +44,7 @@ class Login extends CI_Controller
 			} else {
 				$data_session = array(
 					'nama' => $query->nama_lengkap,
-					'stat' => 'login',
+					'stat' => 'Login',
 					'ha' => $query->role,
 				);
 				$this->session->set_userdata($data_session);
@@ -58,17 +58,17 @@ class Login extends CI_Controller
 				<h4>Ooops... ! ! ! USER ATAU PASSWORD SALAH</h4>
 				</div>'
 			);
-			redirect('login', 'refresh');
+			redirect('Login', 'refresh');
 		}
 	}
 
-	function logout()
+	function Logout()
 	{
 		$this->session->sess_destroy();
 		$data = array(
 			'alert' => $this->session->flashdata('Berhasil Logout')
 		);
-		redirect('login', 'refresh', $data);
+		redirect('Login', 'refresh', $data);
 	}
 }
 

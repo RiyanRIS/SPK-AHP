@@ -23,6 +23,7 @@
 
 
 <body>
+	
 	<nav class="navbar navbar-light navbar-fixed-top" style="background-color: #000000;" role="navigation">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -52,7 +53,7 @@
 
 
 
-			<li><a href="<?php echo site_url('login/logout'); ?>"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+			<li><a href="<?php echo site_url('Login/Logout'); ?>"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
 		</ul>
 
 
@@ -174,21 +175,12 @@
 							<thead>
 								<tr>
 									<th width="10px"><input type="checkbox" name="select-all" id="select-all" /></th>
-									<th>NIK</th>
+									<th>No</th>
 									<th>Nama</th>
 									<th>Role</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
-							<tfoot>
-								<tr>
-									<th><input type="checkbox" name="select-all2" id="select-all2" /></th>
-									<th>NIK</th>
-									<th>Nama</th>
-									<th>Role</th>
-									<th>Aksi</th>
-								</tr>
-							</tfoot>
 							<tbody>
 								<?php
 								foreach ($user as $key => $value) {

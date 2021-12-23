@@ -12,7 +12,7 @@ class Crud extends CI_Model {
 	public function kriteria()
 	{
 			//return $this->db->limit(3,0)->get('kriteria')->result();
-		return $this->db->get('kriteria')->result();
+		return $this->db->get_where('kriteria', 'status = "A"')->result();
 	}	
 
 }

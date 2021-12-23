@@ -20,7 +20,7 @@ class Peternakayam extends CI_Controller
 	{
 		parent::__construct();
 		if (empty($this->session->userdata('stat'))) {
-			redirect('login', 'refresh');
+			redirect('Login', 'refresh');
 		} else {
 
 			$this->load->model('crud');
@@ -36,7 +36,7 @@ class Peternakayam extends CI_Controller
 			'role' => $this->session->userdata('ha'),
 			'nama' => $this->session->userdata('nama'),
 			'nilai_preferensi' => $this->bobot,
-			'kriteria' => $this->db->get('kriteria')->result(),
+			'kriteria' => $this->db->get_where('kriteria', 'status = "A"')->result(),
 			'alternatif' => $this->db->get('alternatif')->result(),
 			'gambar' => 'background-image: url("../assets/images/ayam.jpg"); background-size:cover; widht:100%;',
 			//'url' => 'background-image: linear-gradient(to right, #EAD6EE, #A0F1EA);',

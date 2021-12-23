@@ -8,10 +8,10 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		if (empty($this->session->userdata('stat'))) {
-			redirect('login', 'refresh');
+			redirect('Login', 'refresh');
 		} else {
 
-			$this->load->model('crud');
+			$this->load->model('Crud');
 			$this->load->model('AHP');
 			$this->load->model('AHP2');
 			$this->load->model('Mod_admin');
@@ -26,13 +26,13 @@ class Admin extends CI_Controller
 			'nama' => $this->session->userdata('nama'),
 			'kriteria' => $this->db->get('kriteria')->result(),
 			'alternatif' => $this->db->get('alternatif')->result(),
-			'url' => 'background-image: url("../assets/images/image.jpg");background-size: cover;',
+			'url' => 'background-image: url("../Assets/images/image.jpg");background-size: cover;',
 			//table
 			'user' => $this->Mod_admin->get_user(),
 		);
 		//echo json_encode($data);
 		$this->load->view('Header', $data, FALSE);
-		$this->load->view('adm/index');
+		$this->load->view('Adm/Index');
 		//$this->load->view('Footer');
 	}
 
@@ -83,18 +83,18 @@ class Admin extends CI_Controller
 
 		if (!empty($cek)) {
 			$this->session->set_flashdata('msg', '<script>alert("USERNAME TELAH TERPAKAI !")</script>');
-			redirect('admin', 'refresh');
+			redirect('Admin', 'refresh');
 		} else {
 			$query = $this->Mod_admin->up_user($data, $id);
 
 			if ($query == true) {
 
 				$this->session->set_flashdata('msg', '<script>alert("BERHASIL UPDATE")</script>');
-				redirect('admin', 'refresh');
+				redirect('Admin', 'refresh');
 			} else {
 
 				$this->session->set_flashdata('msg', '<script>alert("GAGAL")</script>');
-				redirect('admin', 'refresh');
+				redirect('Admin', 'refresh');
 				//var_dump($query);
 			}
 		}

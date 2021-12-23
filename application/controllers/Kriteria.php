@@ -20,7 +20,7 @@ class Kriteria extends CI_Controller
 	{
 		parent::__construct();
 		if ($this->session->userdata('stat' != 'login') or $this->session->userdata('ha') != 'peternakayam') {
-			redirect('login', 'refresh');
+			redirect('Login', 'refresh');
 		} else {
 			$this->load->model('crud');
 			$this->load->model('AHP');
@@ -41,7 +41,7 @@ class Kriteria extends CI_Controller
 			//tambahan
 			'data' => $this->crud->alternatif(),
 			'bobot' => $this->bobot,
-			'kriteria' => $this->crud->kriteria(),
+			'kriteria' => $this->db->get('kriteria')->result(),
 			'url' => 'background-image: url("../assets/images/back5.png");',
 		);
 
@@ -90,7 +90,7 @@ class Kriteria extends CI_Controller
 			'data' => $this->db->get('hasil_kriteria')->result(),
 			//'data_id' => $this->db->group_by('kriteria')->get('hasil_kriteria')->result(),
 			'alke' => $this->crud->alternatif(),
-			'kriteria' => $this->db->get('kriteria')->result(),
+			'kriteria' => $this->db->get_where('kriteria', 'status = "A"')->result(),
 			'url' => 'background-image: url("../../assets/images/back5.png");',
 		);
 
@@ -135,7 +135,7 @@ class Kriteria extends CI_Controller
 			//tambahan
 			'alternatif' => $this->db->get('alternatif')->result(),
 			'hasil_alternatif' => $this->Mod_alternatif->get_group(),
-			'kriteria' => $this->db->get('kriteria')->result(),
+			'kriteria' => $this->db->get_where('kriteria', 'status = "A"')->result(),
 			'nilai' => $this->db->get('prioritas_alternatif')->result(),
 			'prioritas_kriteria' => $this->db->get('prioritas_kriteria')->result(),
 
@@ -193,7 +193,7 @@ class Kriteria extends CI_Controller
 
 			for ($j = $i + 1; $j <= $cc; $j++) {
 
-				$cek = $this->db->query('SELECT * from hasil_kriteria where kriteria1 = ? and kriteria2 = ?', array($inputan['kriteria1'][$i][$j], $inputan['kriteria2'][$i][$j]))->row();
+				$cek = $this->db->query('SELECT * FROM hasil_kriteria where kriteria1 = ? and kriteria2 = ?', array($inputan['kriteria1'][$i][$j], $inputan['kriteria2'][$i][$j]))->row();
 				if ($cek == true) {
 					$query = $this->db->query('UPDATE hasil_kriteria set bobot = ?  where kriteria1 =? and kriteria2 = ?', array($inputan['bobot'][$i][$j], $inputan['kriteria1'][$i][$j], $inputan['kriteria2'][$i][$j]));
 				} else {
@@ -227,7 +227,7 @@ class Kriteria extends CI_Controller
 
 		for ($i = 0; $i < $jumlah; $i++) {
 
-			$cek = $this->db->query('SELECT * from prioritas_kriteria where kriteria = ? and alternatif = ?', array($inputan['kriteria'][$i], $input['alternatif'][$i]))->row();
+			$cek = $this->db->query('SELECT * FROM prioritas_kriteria where kriteria = ? and alternatif = ?', array($inputan['kriteria'][$i], $input['alternatif'][$i]))->row();
 
 			if ($cek == true) {
 				$query = $this->db->query('UPDATE prioritas_kriteria set prioritas = ? where kriteria = ? and alternatif = ?', array($input['prioritas'][$i], $input['kriteria'][$i], $input['alternatif'][$i]));
@@ -411,7 +411,7 @@ class Kriteria extends CI_Controller
 			'alternatif' => $this->db->get('alternatif')->result(),
 			'hasil_alternatif' => $this->Mod_alternatif->get_group(),
 			'kriteria' => $this->db->get('kriteria')->result(),
-			'nilai' => $this->db->get('prioritas_alternatif')->result(),
+			'nilai' => $this->db->db->get_where('kriteria', 'status = "A"')->result(),
 			'prioritas_kriteria' => $this->db->get('prioritas_kriteria')->result(),
 
 			//get table
@@ -457,6 +457,17 @@ class Kriteria extends CI_Controller
 		echo '<pre>';
 		print_r($var);
 		echo '</pre>';
+	}
+
+	public function update_status()
+	{
+		$id = $this->input->post('id');
+		$status = $this->input->post('status');
+		$update = $this->Mod_kriteria->update($id, $status);
+		if ($update == true) {
+			redirect('kriteria', 'refresh');
+		}
+		
 	}
 }
 

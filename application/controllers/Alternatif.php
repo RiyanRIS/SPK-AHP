@@ -22,7 +22,7 @@ class Alternatif extends CI_Controller
 	{
 		parent::__construct();
 		if (empty($this->session->userdata('nama'))) {
-			redirect('login', 'refresh');
+			redirect('Login', 'refresh');
 		} else {
 
 			$this->load->model('crud');
@@ -235,7 +235,7 @@ class Alternatif extends CI_Controller
 		#SELECT alternatif.id as ,  alternatif.nama AS nater, nilai_awal.nilai as nilai_awal, nilai_detail.nilai as nilai_detail, nilai_awal.keterangan FROM nilai_awal, nilai_detail, alternatif where nilai_detail.id_nilai_awal = nilai_detail.id and alternatif.id = nilai_awal.id_alternatif
 
 		$this->load->view('Header', $data, FALSE);
-		$this->load->view('Alternatif/Analisa');
+		$this->load->view('alternatif/analisa');
 		$this->load->view('Footer');
 
 		#$this->pre($data);

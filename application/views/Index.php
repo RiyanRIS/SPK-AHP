@@ -53,7 +53,7 @@
 			<div class="col-xs-8 col-sm-8 col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Alternatif</h3>
+						<h3 class="panel-title">Jenis Pakan Broiler (Alternatif)</h3>
 					</div>
 					<div class="panel-body">
 						<ol>
