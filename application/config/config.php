@@ -25,7 +25,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 
 // $config['base_url'] = 'http://localhost/SPK-AHP/';
-$config['base_url'] = 'https://stormy-tundra-82570.herokuapp.com/';
+// $config['base_url'] = 'https://stormy-tundra-82570.herokuapp.com/';
+$config['base_url'] = 'https://pebinurhakim.my.id/';
 /*
 |--------------------------------------------------------------------------
 | Index File
