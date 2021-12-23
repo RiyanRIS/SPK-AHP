@@ -23,7 +23,7 @@ class Peternakayam extends CI_Controller
 			redirect('Login', 'refresh');
 		} else {
 
-			$this->load->model('crud');
+			$this->load->model('Crud');
 			$this->load->model('AHP');
 			$this->load->model('AHP2');
 		}
@@ -43,7 +43,7 @@ class Peternakayam extends CI_Controller
 		);
 		//echo json_encode($data);
 		$this->load->view('Header', $data);
-		$this->load->view('index');
+		$this->load->view('Index');
 		#$this->load->view('Footer');
 	}
 }
