@@ -25,7 +25,7 @@ class Alternatif extends CI_Controller
 			redirect('Login', 'refresh');
 		} else {
 
-			$this->load->model('crud');
+			$this->load->model('Crud');
 			$this->load->model('AHP');
 			$this->load->model('AHP2');
 			$this->load->model('Mod_alternatif');
@@ -42,7 +42,7 @@ class Alternatif extends CI_Controller
 			'nama' => $this->session->userdata('nama'),
 			'nilai_preferensi' => $this->bobot,
 			//tambahan
-			'data' => $this->crud->alternatif(),
+			'data' => $this->Crud->alternatif(),
 			'bobot' => $this->bobot,
 			'kriteria' => $this->crud->kriteria(),
 			'url' => 'background-image: url("../assets/images/images.jpg");',
@@ -51,7 +51,7 @@ class Alternatif extends CI_Controller
 		//echo str_replace(['],[','[[',']]'],'<br>',json_encode($data)); echo '<hr>';
 
 		$this->load->view('Header', $data);
-		$this->load->view('alternatif/Nindex');
+		$this->load->view('Alternatif/Nindex');
 		$this->load->view('Footer');
 	}
 
@@ -69,7 +69,7 @@ class Alternatif extends CI_Controller
 		);
 
 		$this->load->view('Header', $data, FALSE);
-		$this->load->view('alternatif/Nilai');
+		$this->load->view('Alternatif/Nilai');
 		$this->load->view('Footer');
 
 		//$this->pre($data);
@@ -158,7 +158,7 @@ class Alternatif extends CI_Controller
 		echo str_replace(['],[','[[',']]'],'<br>',json_encode($ahp)); echo '<hr>';
 		$this->load->view('test/hasil',$data);*/
 		$this->load->view('Header', $data, FALSE);
-		$this->load->view('alternatif/Nilai_prio');
+		$this->load->view('Alternatif/Nilai_prio');
 		$this->load->view('Footer');
 	}
 
@@ -194,7 +194,7 @@ class Alternatif extends CI_Controller
 			//tambahan
 			'data' => $this->db->get('hasil_alternatif')->result(),
 			'data_id' => $this->db->group_by('kriteria')->get('hasil_alternatif')->result(),
-			'alke' => $this->crud->alternatif(),
+			'alke' => $this->Crud->alternatif(),
 			'kriteria' => $this->db->get_where('kriteria', 'id="' . $id . '"')->row(),
 			'input' => $this->input->post('kriteria'),
 			'url'=> 'background-image: url("../../assets/images/back5.png");',
@@ -211,7 +211,7 @@ class Alternatif extends CI_Controller
 		die;*/
 
 		$this->load->view('Header', $data, FALSE);
-		$this->load->view('alternatif/single');
+		$this->load->view('Alternatif/Single');
 		$this->load->view('Footer');
 
 		#$this->pre($data);
@@ -235,7 +235,7 @@ class Alternatif extends CI_Controller
 		#SELECT alternatif.id as ,  alternatif.nama AS nater, nilai_awal.nilai as nilai_awal, nilai_detail.nilai as nilai_detail, nilai_awal.keterangan FROM nilai_awal, nilai_detail, alternatif where nilai_detail.id_nilai_awal = nilai_detail.id and alternatif.id = nilai_awal.id_alternatif
 
 		$this->load->view('Header', $data, FALSE);
-		$this->load->view('alternatif/analisa');
+		$this->load->view('Alternatif/Analisa');
 		$this->load->view('Footer');
 
 		#$this->pre($data);
@@ -456,7 +456,7 @@ class Alternatif extends CI_Controller
 			redirect('alternatif/analisa', 'refresh');
 		} else {
 			echo '<script>alert("Gagal");</script>';
-			redirect('alternatif/analisa', 'refresh');
+			redirect('Alternatif/Analisa', 'refresh');
 		}
 
 		#$this->pre($input);

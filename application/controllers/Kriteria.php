@@ -22,7 +22,7 @@ class Kriteria extends CI_Controller
 		if ($this->session->userdata('stat' != 'login') or $this->session->userdata('ha') != 'peternakayam') {
 			redirect('Login', 'refresh');
 		} else {
-			$this->load->model('crud');
+			$this->load->model('Crud');
 			$this->load->model('AHP');
 			$this->load->model('AHP2');
 			$this->load->model('Mod_kriteria');
@@ -68,7 +68,7 @@ class Kriteria extends CI_Controller
 
 		//echo str_replace(['],[','[[',']]'],'<br>',json_encode($data)); echo '<hr>';
 		$this->load->view('Header', $data);
-		$this->load->view('kriteria/analisa');
+		$this->load->view('kriteria/Analisa');
 		$this->load->view('Footer');
 	}
 
@@ -89,7 +89,7 @@ class Kriteria extends CI_Controller
 			//tambahan
 			'data' => $this->db->get('hasil_kriteria')->result(),
 			//'data_id' => $this->db->group_by('kriteria')->get('hasil_kriteria')->result(),
-			'alke' => $this->crud->alternatif(),
+			'alke' => $this->Crud->alternatif(),
 			'kriteria' => $this->db->get_where('kriteria', 'status = "A"')->result(),
 			'url' => 'background-image: url("../../assets/images/back5.png");',
 		);
@@ -166,7 +166,7 @@ class Kriteria extends CI_Controller
 		if (!empty($data['prioritas_kriteria'])) {
 
 			$this->load->view('Header', $data, FALSE);
-			$this->load->view('hasil/perangkingan');
+			$this->load->view('Hasil/Perangkingan');
 			$this->load->view('Footer');
 		} else {
 
