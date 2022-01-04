@@ -39,7 +39,7 @@ class Kriteria extends CI_Controller
 			'nama' => $this->session->userdata('nama'),
 			'nilai_preferensi' => $this->bobot,
 			//tambahan
-			'data' => $this->crud->alternatif(),
+			'data' => $this->Crud->alternatif(),
 			'bobot' => $this->bobot,
 			'kriteria' => $this->db->get('kriteria')->result(),
 			'url' => 'background-image: url("../assets/images/back5.png");',
@@ -59,9 +59,9 @@ class Kriteria extends CI_Controller
 			'nama' => $this->session->userdata('nama'),
 			'nilai_preferensi' => $this->bobot,
 			//tambahan
-			'data' => $this->crud->alternatif(),
+			'data' => $this->Crud->alternatif(),
 			'bobot' => $this->bobot,
-			'kriteria' => $this->crud->kriteria(),
+			'kriteria' => $this->Crud->kriteria(),
 			'hasil_kriteria' => $this->db->get('hasil_kriteria')->result(),
 			'url' => 'background-image: url("../../assets/images/back5.png");',
 		);

@@ -44,7 +44,7 @@ class Alternatif extends CI_Controller
 			//tambahan
 			'data' => $this->Crud->alternatif(),
 			'bobot' => $this->bobot,
-			'kriteria' => $this->crud->kriteria(),
+			'kriteria' => $this->Crud->kriteria(),
 			'url' => 'background-image: url("../assets/images/images.jpg");',
 		);
 
@@ -131,7 +131,7 @@ class Alternatif extends CI_Controller
 			//tambahan
 			'data' => $this->db->get('hasil_alternatif')->result(),
 			'data_id' => $this->db->group_by('kriteria')->get('hasil_alternatif')->result(),
-			'alke' => $this->crud->alternatif(),
+			'alke' => $this->Crud->alternatif(),
 			'kriteria' => $this->db->get_where('kriteria')->result(),
 			'url' => 'background-image: url("../../assets/images/back5.png");',
 
